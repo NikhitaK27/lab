@@ -16,7 +16,8 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
+                    // Use the correct credential ID: '1Nikhita'
+                    docker.withRegistry('https://index.docker.io/v1/', '1Nikhita') {
                         docker.build("$DOCKER_HUB_REPO")
                     }
                 }
@@ -36,7 +37,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
+                    // Use the correct credential ID: '1Nikhita'
+                    docker.withRegistry('https://index.docker.io/v1/', '1Nikhita') {
                         docker.image("$DOCKER_HUB_REPO").push('latest')
                     }
                 }
@@ -44,3 +46,4 @@ pipeline {
         }
     }
 }
+
